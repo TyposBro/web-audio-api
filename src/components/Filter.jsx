@@ -24,17 +24,34 @@ export const Filter = ({ settings, change, changeType }) => {
 
       <div className="param">
         <h3>Wave</h3>
-        <button id="sine" onClick={changeType} className={`${type === "sine" && "active"}`}>
-          sine
+        <button id="lowpass" onClick={changeType} className={`${type === "lowpass" && "active"}`}>
+          lowpass
         </button>
-        <button id="triangle" onClick={changeType} className={`${type === "triangle" && "active"}`}>
-          triangle
+        <button id="highpass" onClick={changeType} className={`${type === "highpass" && "active"}`}>
+          highpass
         </button>
-        <button id="square" onClick={changeType} className={`${type === "square" && "active"}`}>
-          square
+        <button id="bandpass" onClick={changeType} className={`${type === "bandpass" && "active"}`}>
+          bandpass
         </button>
-        <button id="sawtooth" onClick={changeType} className={`${type === "sawtooth" && "active"}`}>
-          sawtooth
+        <button id="lowshelf" onClick={changeType} className={`${type === "lowshelf" && "active"}`}>
+          lowshelf
+        </button>
+
+        <button
+          id="highshelf"
+          onClick={changeType}
+          className={`${type === "highshelf" && "active"}`}
+        >
+          highshelf
+        </button>
+        <button id="peaking" onClick={changeType} className={`${type === "peaking" && "active"}`}>
+          peaking
+        </button>
+        <button id="notch" onClick={changeType} className={`${type === "notch" && "active"}`}>
+          notch
+        </button>
+        <button id="allpass" onClick={changeType} className={`${type === "allpass" && "active"}`}>
+          allpass
         </button>
       </div>
     </div>
