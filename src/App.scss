@@ -1,0 +1,39 @@
+body {
+  background-color: rgba(17, 80, 108);
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.control {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    width: 100%;
+    text-align: center;
+  }
+  input {
+    width: 25rem;
+  }
+  button {
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 2.5rem;
+    font-size: 1.4rem;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: rgb(255, 57, 248);
+    }
+  }
+  .active {
+    background-color: rgb(145, 29, 141);
+    color: #fff;
+  }
+}
