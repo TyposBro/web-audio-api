@@ -36,4 +36,16 @@ body {
     background-color: rgb(145, 29, 141);
     color: #fff;
   }
+
+  .param {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    // flex: 1 1 1;
+    & > * {
+      flex: 1 1 auto;
+    }
+  }
 }

@@ -15,15 +15,16 @@ export const Filter = ({ settings, change, changeType }) => {
       </div>
       <div className="param">
         <label htmlFor="Q">Q</label>
-        <input value={Q} onChange={change} id="Q" type="range" max="10" />
+        <input value={Q} onChange={change} id="Q" type="range" max="10" step="0.1" />
       </div>
       <div className="param">
         <label htmlFor="gain">gain</label>
-        <input value={gain} onChange={change} id="gain" type="range" max="10" />
+        <input value={gain} onChange={change} id="gain" type="range" max="10" step="0.1" />
       </div>
 
       <div className="param">
-        <h3>Wave</h3>
+        <h3>Type</h3>
+
         <button id="lowpass" onClick={changeType} className={`${type === "lowpass" && "active"}`}>
           lowpass
         </button>
@@ -33,6 +34,7 @@ export const Filter = ({ settings, change, changeType }) => {
         <button id="bandpass" onClick={changeType} className={`${type === "bandpass" && "active"}`}>
           bandpass
         </button>
+
         <button id="lowshelf" onClick={changeType} className={`${type === "lowshelf" && "active"}`}>
           lowshelf
         </button>
@@ -47,6 +49,7 @@ export const Filter = ({ settings, change, changeType }) => {
         <button id="peaking" onClick={changeType} className={`${type === "peaking" && "active"}`}>
           peaking
         </button>
+
         <button id="notch" onClick={changeType} className={`${type === "notch" && "active"}`}>
           notch
         </button>
