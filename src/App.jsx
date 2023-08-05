@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.scss";
+
+import { Osc1, Filter } from "./components/";
+
+const ctx = new AudioContext();
+const out = ctx.destination;
+
+const osc1 = ctx.createOscillator();
+const gain1 = ctx.createGain();
+const filter = ctx.createBiquadFilter();
+
+osc1.connect(gain1);
+gain1.connect(filter);
+filter.connect(out);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [osc1Settings, setOsc1Settings] = useState({
+    frequency: osc1.frequency.value,
+    detune: osc1.detune.value,
+    type: osc1.type,
+  });
+
+  const [filterSettings, setFilterSettings] = useState({
+    frequency: filter.frequency.value,
+    detune: filter.detune.value,
+    type: filter.type,
+    Q: filter.Q.value,
+    gain: filter.gain.value,
+  });
+
+  const changeFilter = ({ target }) => {
+    const value = target.valueAsNumber;
+    const id = target.id;
+    filter[id].value = value;
+    setFilterSettings({ ...filterSettings, [id]: value });
+  };
+
+  const changeFilterType = ({ target }) => {
+    const id = target.id;
+    filter.type = id;
+    setFilterSettings({ ...filterSettings, type: id });
+  };
+
+  const changeOsc1 = ({ target }) => {
+    const value = target.valueAsNumber;
+    const id = target.id;
+    osc1[id].value = value;
+    setOsc1Settings({ ...osc1Settings, [id]: value });
+  };
+
+  const changeType = ({ target }) => {
+    const id = target.id;
+    osc1.type = id;
+    setOsc1Settings({ ...osc1Settings, type: id });
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <h1>Sliders</h1>
+      <button onClick={() => osc1.start()}>Play</button>
+      <button onClick={() => osc1.stop()}>Stop</button>
+      <Osc1 change={changeOsc1} settings={osc1Settings} changeType={changeType} />
+      <Filter change={changeFilter} settings={filterSettings} changeType={changeFilterType} />
+    </div>
+  );
 }
 
-export default App
+export default App;
