@@ -4,6 +4,17 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  & > * {
+    flex: 1 1 auto;
+  }
+}
+
 .control {
   background-color: rgba(0, 0, 0, 0.5);
   margin: 1.5rem;
@@ -47,5 +58,17 @@ body {
     & > * {
       flex: 1 1 auto;
     }
+  }
+}
+button {
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 2.5rem;
+  font-size: 1.4rem;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: rgb(255, 57, 248);
   }
 }

@@ -57,9 +57,12 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Sliders</h1>
-      <button onClick={() => osc1.start()}>Play</button>
-      <button onClick={() => osc1.stop()}>Stop</button>
+      <div className="switch">
+        <h1>Sliders</h1>
+        <button onClick={() => osc1.start()}>Play</button>
+        <button onClick={() => osc1.stop()}>Stop</button>
+      </div>
+
       <Osc1 change={changeOsc1} settings={osc1Settings} changeType={changeType} />
       <Filter change={changeFilter} settings={filterSettings} changeType={changeFilterType} />
     </div>
