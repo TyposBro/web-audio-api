@@ -1,0 +1,6 @@
+export const types = {
+  START_OSC1: "START_OSC1",
+  STOP_OSC1: "STOP_OSC1",
+  UPDATE_OSC1: "UPDATE_OSC1",
+  UPDATE_FILTER: "UPDATE_FILTER",
+};
