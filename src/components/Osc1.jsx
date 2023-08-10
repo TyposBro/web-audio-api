@@ -1,12 +1,31 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
 
-export const Osc1 = ({ settings, change, changeType }) => {
-  const { type, frequency, detune } = settings;
+import { storeCTX } from "../context/Store";
+import { types } from "../context/Types";
+
+export const Osc1 = () => {
+  const [state, update] = useContext(storeCTX);
+  const { type, frequency, detune } = state.osc1Settings;
+
+  const change = ({ target }) => {
+    const value = target.valueAsNumber;
+    const id = target.id;
+    console.table({ [id]: value });
+    update({ type: types.UPDATE_OSC1, payload: { id, value } });
+  };
+
+  const changeType = ({ target }) =>
+    update({ type: types.UPDATE_OSC1, payload: { id: "type", value: target.id } });
+
   return (
     <div className="control">
       <h2>Osc 1</h2>
+      <div>
+        <button onClick={() => update({ type: types.START_OSC1 })}>Play</button>
+        <button onClick={() => update({ type: types.STOP_OSC1 })}>Stop</button>
+      </div>
       <div className="param">
-        <label htmlFor="freq">Frequency</label>
+        <label htmlFor="frequency">Frequency</label>
         <input max="5000" value={frequency} onChange={change} id="frequency" type="range" />
       </div>
       <div className="param">
@@ -34,13 +53,3 @@ export const Osc1 = ({ settings, change, changeType }) => {
 };
 
 export default Osc1;
-
-Osc1.propTypes = {
-  settings: PropTypes.shape({
-    frequency: PropTypes.number.isRequired,
-    detune: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-  }),
-  change: PropTypes.func.isRequired,
-  changeType: PropTypes.func.isRequired,
-};

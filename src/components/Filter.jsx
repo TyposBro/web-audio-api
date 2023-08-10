@@ -1,7 +1,20 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
+import { storeCTX } from "../context/Store";
+import { types } from "../context/Types";
 
-export const Filter = ({ settings, change, changeType }) => {
-  const { type, frequency, detune, gain, Q } = settings;
+export const Filter = () => {
+  const [state, update] = useContext(storeCTX);
+  const { type, frequency, detune, gain, Q } = state.filterSettings;
+
+  const change = ({ target }) => {
+    const value = target.valueAsNumber;
+    const id = target.id;
+    state.osc1[id].value = value;
+    update({ type: types.UPDATE_FILTER, payload: { id, value } });
+  };
+  const changeType = ({ target }) =>
+    update({ type: types.UPDATE_FILTER, payload: { id: "type", value: target.id } });
+
   return (
     <div className="control">
       <h2>Filter</h2>
@@ -62,15 +75,3 @@ export const Filter = ({ settings, change, changeType }) => {
 };
 
 export default Filter;
-
-Filter.propTypes = {
-  settings: PropTypes.shape({
-    frequency: PropTypes.number.isRequired,
-    detune: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    Q: PropTypes.number.isRequired,
-    gain: PropTypes.number.isRequired,
-  }),
-  change: PropTypes.func.isRequired,
-  changeType: PropTypes.func.isRequired,
-};
