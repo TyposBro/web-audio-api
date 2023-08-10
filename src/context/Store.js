@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { types } from "./Types";
 
 const audioCTX = new AudioContext();
 const out = audioCTX.destination;
@@ -29,15 +30,21 @@ export const initialState = {
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
+  const { id, value } = payload || {};
   switch (type) {
-    case "START_OSC":
-      return { ...state, ...payload };
+    case types.START_OSC1:
+      console.log(osc1);
+      if (osc1?.context?.state === "running") return { ...state };
+      osc1.start();
+      return { ...state };
+    case types.STOP_OSC1:
+      osc1.stop();
+      return { ...state };
+    case types.UPDATE_OSC1:
+      return { ...state, osc1Settings: { ...state.osc1Settings, [id]: value } };
 
-    case "START_OSC1":
-      return { ...state, ...payload };
-
-    case "START_OSC2":
-      return { ...state, ...payload };
+    case types.UPDATE_FILTER:
+      return { ...state, filterSettings: { ...state.filterSettings, [id]: value } };
 
     default:
       console.log("reducer error. type: ", type, "payload: ", payload);
