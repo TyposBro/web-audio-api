@@ -1,6 +1,7 @@
 import "./App.scss";
 
 import { Osc1, Filter } from "./components/";
+// import Keyboard from "./components/Keyboard";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
 
       <Osc1 />
       <Filter />
+      {/* <Keyboard /> */}
     </div>
   );
 }

@@ -3,4 +3,6 @@ export const types = {
   STOP_OSC1: "STOP_OSC1",
   UPDATE_OSC1: "UPDATE_OSC1",
   UPDATE_FILTER: "UPDATE_FILTER",
+  MAKE_OSC: "MAKE_OSC",
+  KILL_OSC: "KILL_OSC",
 };
